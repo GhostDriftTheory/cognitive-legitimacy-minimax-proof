@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematical Proof: Cognitive Legitimacy (Strictly Rigorous Version 10.0)</title>
+    <title>Cognitive Legitimacy & Algorithmic Legitimacy Shift (ALS): A Strict Minimax-Risk Proof (Version 10.0)</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
@@ -151,19 +151,21 @@
 </head>
 <body>
 
-    <h1>Mathematical Proof: Cognitive Legitimacy<br>(Strictly Rigorous Version 10.0)</h1>
+    <h1>Cognitive Legitimacy & Algorithmic Legitimacy Shift (ALS): A Strict Minimax-Risk Proof (Version 10.0)</h1>
     <div class="meta-info">
         <strong>Subject:</strong> Statistical Decision Theory / Cognitive Legitimacy<br>
         <strong>Author:</strong> Manny (Ghost Drift Theoretical Group)<br>
         <strong>Date:</strong> 2026-01-21 (The Perfected Proof)
     </div>
 
-    <div class="abstract">
-        <strong>Abstract:</strong> 
-        This paper rigorously proves, within a statistical decision-theoretic framework, that in problem classes where comprehensive human review is structurally difficult ($B < J$), algorithmic determination possesses higher cognitive legitimacy (in the sense of strict minimax risk superiority).
-        Version 10.0 achieves complete mathematical closure by: (1) defining the extended probability space including internal randomness to rigorously define the human risk; (2) explicating the explicit construction of the uniform subset generator for achievability; (3) ensuring consistent notation for induced measures; and (4) formally linking Bayes risk to Minimax risk in the algorithm's lower bound derivation.
-        This establishes the strict dominance of the Algorithm Channel over the Human Channel as a fundamental mathematical theorem, with no remaining ambiguities in the probabilistic model.
-    </div>
+<div class="abstract">
+  <strong>Abstract:</strong>
+  We introduce <em>Algorithmic Legitimacy Shift (ALS)</em>: a decision-theoretic phenomenon in which, under structural coverage constraints ($B < J$), the algorithmic decision channel becomes strictly more legitimate than the human decision channel in the minimax-risk sense.
+  Formally, the Human Channel admits a sharp, non-vanishing minimax error floor on a noiseless subclass, while the Algorithm Channel achieves exponentially decaying minimax risk in the sample size $m$ under a positive margin condition $\Delta>0$.
+  Version 10.0 is mathematically closed by (1) defining an extended probability space including internal randomization to rigorously construct human risk; (2) giving an explicit uniform $B$-subset generator to witness achievability of the sharp bound; (3) enforcing consistent notation for induced measures; and (4) linking Bayes risk to minimax risk in the information-theoretic lower bound.
+  These results yield an explicit sufficient condition on $m$ under which $\mathfrak{R}^\star(\mathsf{Ch}_A) < \mathfrak{R}^\star(\mathsf{Ch}_H)$ holds as a theorem, with no remaining ambiguity in the probabilistic model.
+  This provides a formal criterion for comparing the legitimacy of evaluation channels (e.g., human review vs. third-party AI assessment) under explicit structural constraints.
+</div>
 
     <h2>1. Measure-Theoretic Foundation & Model Definition</h2>
 
@@ -461,4 +463,5 @@
     </div>
 
 </body>
+
 </html>
