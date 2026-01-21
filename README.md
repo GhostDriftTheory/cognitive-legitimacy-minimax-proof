@@ -1,22 +1,23 @@
 # **Cognitive Legitimacy under Minimax Risk**
-
+## **Algorithmic Legitimacy Shift (ALS)**  
 ### **A Strictly Rigorous Proof of Algorithmic Dominance over Human Judgment**
 
-**If** $B \< J$**, human judgment has an unavoidable minimax error floor.**
+> **Algorithmic Legitimacy Shift (ALS):** Under structural constraints ($B < J$), the algorithmic channel becomes strictly more legitimate than the human channel in the minimax-risk sense.
 
-**With sufficient** $m$**, algorithmic minimax risk becomes strictly smaller.**
+**If** $B < J$**, human judgment has an unavoidable minimax error floor.**  
+**For explicit** $m$**, algorithmic minimax risk becomes strictly smaller.**
 
-This repo proves a single claim: when humans cannot cover all fields ($B \< J$), the Human Channel has an unavoidable minimax error floor, while the Algorithm Channel’s minimax risk can be driven down exponentially with $m$.
+This repo proves a single claim: when humans cannot cover all fields ($B < J$), the Human Channel has an unavoidable minimax error floor, while the Algorithm Channel’s minimax risk can be driven down exponentially with $m$.
 
 ## **📜 Executive Summary**
 
-* If $B \< J$, the **Human Channel** has a non-vanishing minimax error floor.  
-* The **Algorithm Channel**’s minimax risk decays exponentially in $m$ (under $\\Delta \> 0$).  
-* Therefore, for explicit $m$, $\\mathfrak{R}^\\star(\\mathsf{Ch}\_A) \< \\mathfrak{R}^\\star(\\mathsf{Ch}\_H)$.
+* If $B < J$, the **Human Channel** has a non-vanishing minimax error floor.  
+* The **Algorithm Channel**’s minimax risk decays exponentially in $m$ (under $\Delta > 0$).  
+* Therefore, for explicit $m$, $\mathfrak{R}^\star(\mathsf{Ch}_A) < \mathfrak{R}^\star(\mathsf{Ch}_H)$.
 
 **Sufficient condition:**
 
-$$m \> \\frac{2}{\\Delta^2} \\log\\left(\\frac{2J}{1 \- B/J}\\right)$$
+$$m > \frac{2}{\Delta^2} \log\left(\frac{2J}{1 - B/J}\right)$$
 
 ## **🧠 The Paradigm Shift**
 
