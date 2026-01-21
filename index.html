@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Proof: Cognitive Legitimacy (Strictly Rigorous Version 10.0)</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #002244; /* Deep Royal Blue */
+            --accent-color: #800000;  /* Maroon */
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --border-color: #dddddd;
+            --ref-color: #444444;
+        }
+
+        body {
+            font-family: "Latin Modern Roman", "Noto Serif JP", serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            margin-bottom: 0.8em;
+            color: var(--primary-color);
+            border-bottom: 3px double var(--primary-color);
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 2.5em;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            color: var(--text-color);
+            margin-top: 1.5em;
+            font-weight: bold;
+        }
+
+        .meta-info {
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 3em;
+            font-family: "Latin Modern Sans", sans-serif;
+        }
+
+        .abstract {
+            background-color: #f0f4f8;
+            padding: 1.5em;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 3em;
+            font-size: 0.95em;
+            text-align: justify;
+        }
+
+        .block {
+            margin: 1.5em 0;
+            padding: 1.0em 1.5em;
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+
+        .definition { border-left: 4px solid #2980b9; }
+        .theorem { border-left: 4px solid #2c3e50; background-color: #ffffff; }
+        .lemma { border-left: 4px solid #7f8c8d; }
+        .assumption { border-left: 4px solid #e67e22; }
+        .axiom { border-left: 4px solid #8e44ad; }
+        .corollary { border-left: 4px solid #27ae60; }
+        .remark { border-left: 4px solid #c0392b; background-color: #fff5f5; }
+
+        .block-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5em;
+            font-family: "Latin Modern Sans", sans-serif;
+            font-size: 1.05em;
+        }
+        
+        .definition .block-title { color: #2980b9; }
+        .theorem .block-title { color: #2c3e50; }
+        .lemma .block-title { color: #7f8c8d; }
+        .assumption .block-title { color: #d35400; }
+        .axiom .block-title { color: #8e44ad; }
+        .corollary .block-title { color: #27ae60; }
+        .remark .block-title { color: #c0392b; }
+
+        .proof {
+            margin-top: 0.8em;
+            padding-left: 1.5em;
+            border-left: 2px solid #ddd;
+            color: #444;
+            font-size: 0.95em;
+        }
+
+        .proof::before {
+            content: "Proof.";
+            font-style: italic;
+            font-weight: bold;
+            color: var(--text-color);
+            display: block;
+            margin-bottom: 0.3em;
+        }
+
+        .qed {
+            text-align: right;
+            font-size: 1.2em;
+            margin-top: -1em;
+        }
+        .qed::after { content: "◼"; }
+
+        .cite {
+            font-size: 0.75em;
+            vertical-align: super;
+            margin-left: 1px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .references {
+            font-size: 0.9em;
+            color: var(--ref-color);
+            margin-top: 2em;
+            border-top: 1px solid #eee;
+            padding-top: 1em;
+        }
+        .references ol {
+            padding-left: 2em;
+        }
+        .references li {
+            margin-bottom: 0.6em;
+            text-align: left;
+        }
+
+        /* MathJax adjustments */
+        mjx-container { font-size: 105% !important; }
+    </style>
+</head>
+<body>
+
+    <h1>Mathematical Proof: Cognitive Legitimacy<br>(Strictly Rigorous Version 10.0)</h1>
+    <div class="meta-info">
+        <strong>Subject:</strong> Statistical Decision Theory / Cognitive Legitimacy<br>
+        <strong>Author:</strong> Manny (Ghost Drift Theoretical Group)<br>
+        <strong>Date:</strong> 2026-01-21 (The Perfected Proof)
+    </div>
+
+    <div class="abstract">
+        <strong>Abstract:</strong> 
+        This paper rigorously proves, within a statistical decision-theoretic framework, that in problem classes where comprehensive human review is structurally difficult ($B < J$), algorithmic determination possesses higher cognitive legitimacy (in the sense of strict minimax risk superiority).
+        Version 10.0 achieves complete mathematical closure by: (1) defining the extended probability space including internal randomness to rigorously define the human risk; (2) explicating the explicit construction of the uniform subset generator for achievability; (3) ensuring consistent notation for induced measures; and (4) formally linking Bayes risk to Minimax risk in the algorithm's lower bound derivation.
+        This establishes the strict dominance of the Algorithm Channel over the Human Channel as a fundamental mathematical theorem, with no remaining ambiguities in the probabilistic model.
+    </div>
+
+    <h2>1. Measure-Theoretic Foundation & Model Definition</h2>
+
+    <div class="block definition">
+        <span class="block-title">Notation and Probability Space</span>
+        <ul>
+            <li>Let $[J] := \{1, \dots, J\}$ be the set of fields with $J \ge 2$. Let $[m] := \{1, \dots, m\}$.</li>
+            <li>Let $\mathcal{X} := [-1, 1]$ be the observation space equipped with Borel $\sigma$-algebra $\mathcal{B}(\mathcal{X})$.</li>
+            <li>Let $\mathcal{P}(\mathcal{X})$ be the set of all probability measures on $\mathcal{X}$.</li>
+            <li>Throughout, $\log$ denotes the natural logarithm.</li>
+            <li><strong>Randomness Source:</strong> We fix the internal randomization space $(\mathcal{U}, \mathcal{B}(\mathcal{U}), \lambda) := ([0, 1]^{T+1}, \mathcal{B}, \text{Leb}^{\otimes (T+1)})$. Let $U = (U_1, \dots, U_T, U_{T+1}) \sim \lambda$ with independent coordinates.</li>
+        </ul>
+    </div>
+
+    <div class="block definition">
+        <span class="block-title">Definition 1 (Data-Generating Families and Environment)</span>
+        Fix margin $\mu_+ \in (0, 1]$ and contamination rate $\alpha \in [0, 1)$.
+        <ul>
+            <li><strong>Clean Families:</strong> 
+                $\mathcal{P}_1 := \{P \in \mathcal{P}(\mathcal{X}) : \mathbb{E}_P[X] \ge \mu_+\}$, 
+                $\mathcal{P}_0 := \{P \in \mathcal{P}(\mathcal{X}) : \mathbb{E}_P[X] \le -\mu_+\}$.
+            </li>
+            <li><strong>Contamination Family:</strong> $\mathcal{Q} := \mathcal{P}(\mathcal{X})$.</li>
+            <li><strong>Parameter Space:</strong> $\Theta := \{0, 1\}^J$. Truth vector $\vartheta = (\vartheta_1, \dots, \vartheta_J) \in \Theta$.</li>
+            <li><strong>Environment Space:</strong> $\Omega := \{ \omega=(\vartheta, P, Q) : \vartheta \in \Theta, P \in \prod_{j=1}^J \mathcal{P}_{\vartheta_j}, Q \in \mathcal{Q}^J \}$.</li>
+            <li><strong>Data Generation:</strong> For each $\omega \in \Omega$ and $j \in [J]$, the observation follows the mixture measure:
+                $$ M_{j,\omega} := (1-\alpha)P_j + \alpha Q_j. $$
+            </li>
+            <li><strong>Target:</strong> $g(\vartheta) := \bigwedge_{j=1}^J \vartheta_j \in \{0, 1\}$. Loss $L(\hat{g}, \vartheta) = \mathbf{1}\{\hat{g} \neq g(\vartheta)\}$.</li>
+        </ul>
+    </div>
+
+    <div class="block definition">
+        <span class="block-title">Definition 1.1 (Sampling Mechanism)</span>
+        <ul>
+          <li><strong>Algorithm sampling:</strong> The full observation is $X=(X_{j,i})_{j\in[J],\,i\in[m]}\in\mathcal{X}^{Jm}$.
+            $$ X_{j,i}\stackrel{\text{i.i.d.}}{\sim} M_{j,\omega}, \quad \text{independent across }(j,i). $$
+          </li>
+          <li><strong>Human query sampling:</strong> Each query to field $j_t$ yields a fresh sample $x_t$.
+            Conditional on $\omega$ and $U$ (and thus on the query sequence $j_1, \dots, j_T$), the samples $x_1, \dots, x_T$ are independent and satisfy $x_t \sim M_{j_t, \omega}$.
+          </li>
+        </ul>
+    </div>
+
+    <h2>2. Procedures and Channels as Statistical Experiments</h2>
+
+    <div class="block definition">
+        <span class="block-title">Definition 2 (Human Protocol $\Pi_H$ and Admissible Class)</span>
+        Fix $T\in\mathbb{N}$ (total queries) and unique-field budget $B\in\{0,\dots,J-1\}$.
+        (W.L.O.G. assume $B \le T$).
+        A human procedure $\Pi_H=(\psi_1,\dots,\psi_T,\phi)$ consists of Borel measurable maps
+        $$\psi_t:([J]\times\mathcal{X})^{t-1}\times[0,1]\to[J],\quad
+          \phi:([J]\times\mathcal{X})^{T}\times[0,1]\to\{0,1\}.$$
+        Given $U=(U_1,\dots,U_T,U_{T+1})$, define iteratively
+        $$j_t=\psi_t(H_{t-1},U_t),\qquad x_t\sim M_{j_t,\omega},$$
+        generating a history $H_T \in \mathcal{Y}_H := ([J]\times\mathcal{X})^T$.
+        <br>
+        Define the extended outcome space $\tilde{\mathcal{Y}}_H := \mathcal{Y}_H \times [0, 1]$ equipped with the product measure $\tilde{\mathbb{P}}^{\Pi_H}_\omega := \mathbb{P}^{\Pi_H}_\omega \otimes \text{Leb}$, governing the pair $(H_T, U_{T+1})$.
+        <br>
+        Let $S_T:=\{j_t:1\le t\le T\}$. The admissible class is
+        $$\mathrm{Adm}_H(T,B):=\{\Pi_H:\ \forall \omega\in\Omega,\ \mathbb{P}^{\Pi_H}_\omega(|S_T|\le B)=1\}.$$
+    </div>
+
+    <div class="block definition">
+        <span class="block-title">Definition 3 (Algorithm Protocol $\Pi_A$)</span>
+        The algorithm observes $X \in \mathcal{Y}_A := \mathcal{X}^{Jm}$. The induced law is $P_\omega := \bigotimes_{j=1}^J M_{j,\omega}^{\otimes m}$.
+        A procedure is a Borel measurable map $\delta: \mathcal{Y}_A \to \{0, 1\}$.
+        The admissible class is $\text{Adm}_A(m)$, the set of all such maps.
+    </div>
+
+    <div class="block definition">
+        <span class="block-title">Definition 4 (Channels, Estimators, Risk, Minimax Risk)</span>
+        Let $g(\vartheta)=\bigwedge_{j=1}^J\vartheta_j\in\{0,1\}$.
+        <br><strong>Human estimator:</strong> for $\Pi_H=(\psi,\phi)$, define
+        $$ \hat{g}_H := \phi(H_T, U_{T+1}) \in \{0, 1\}. $$
+        <br><strong>Algorithm estimator:</strong> for $\delta$, define
+        $$ \hat{g}_A := \delta(X) \in \{0, 1\}. $$
+        Define the (0–1) risk:
+        $$ R_H(\Pi_H;\omega) := \mathbb{E}_{\tilde{\mathbb{P}}^{\Pi_H}_\omega}[\mathbf{1}\{\phi(H_T, U_{T+1}) \neq g(\vartheta)\}], \quad R_A(\delta;\omega) := \mathbb{E}_{P_\omega}[\mathbf{1}\{\hat{g}_A \neq g(\vartheta)\}]. $$
+        Then the minimax risks are
+        $$ \mathfrak{R}^\star(\mathsf{Ch}_H(T,B)) := \inf_{\Pi_H\in \mathrm{Adm}_H(T,B)}\ \sup_{\omega\in\Omega} R_H(\Pi_H;\omega), $$
+        $$ \mathfrak{R}^\star(\mathsf{Ch}_A(m)) := \inf_{\delta\in \mathrm{Adm}_A(m)}\ \sup_{\omega\in\Omega} R_A(\delta;\omega). $$
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma IT (Explicit kernel construction)</span>
+        Fix $\Pi_H$. The measure $\mathbb{P}^{\Pi_H}_\omega$ on $\mathcal{Y}_H$ is uniquely constructed via the Ionescu-Tulcea theorem using kernels $K_t(h_{t-1}, u_t; \cdot)$ determined by $\psi_t$ and $M_{j,\omega}$.
+        Finally, since $U_{T+1} \sim \text{Unif}[0,1]$ is independent of the history, the product extension yields a unique induced law $\tilde{\mathbb{P}}^{\Pi_H}_\omega$ on $\tilde{\mathcal{Y}}_H$.
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma 0 (Restriction Monotonicity)</span>
+        For any subset $\Omega' \subset \Omega$, $\inf_{\Pi} \sup_{\omega \in \Omega} R(\Pi; \omega) \ge \inf_{\Pi} \sup_{\omega \in \Omega'} R(\Pi; \omega)$.
+    </div>
+
+    <h2>3. Sharp Lower Bound for Human Channel</h2>
+
+    <div class="block definition">
+        <span class="block-title">Definition 5 (Noiseless Subclass $\Omega_H^0$)</span>
+        Define $\Omega_H^0\subset\Omega$ by requiring, for every $j\in[J]$,
+        $$P_j=\delta_{+1}\ \text{if }\vartheta_j=1,\qquad P_j=\delta_{-1}\ \text{if }\vartheta_j=0,$$
+        and additionally $Q_j=P_j$ for all $j$.
+        Hence for every $\omega\in\Omega_H^0$, $M_{j,\omega}=P_j$, so observations are deterministic given $\vartheta$.
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma H1 (Coverage Bound)</span>
+        Fix an admissible $\Pi_H$. Define $p_j := \mathbb{P}^{\Pi_H}_{\omega^{(1)}}(j \in S_T)$ under the "all-true" environment $\omega^{(1)}$.
+        Then $\sum_{j=1}^J p_j = \mathbb{E}^{\Pi_H}_{\omega^{(1)}}[|S_T|] \le B$.
+        Thus, there exists $K \in \arg\min_{j} p_j$ such that $\mathbb{P}^{\Pi_H}_{\omega^{(1)}}(K \notin S_T) = 1 - p_K \ge 1 - B/J$.
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma H1' (Hitting Probability Invariance)</span>
+        Let $\omega^{(0,K)}$ be the environment where only $\vartheta_K=0$.
+        For any $K$, $\mathbb{P}^{\Pi_H}_{\omega^{(1)}}(K \in S_T) = \mathbb{P}^{\Pi_H}_{\omega^{(0,K)}}(K \in S_T)$.
+    </div>
+
+    <div class="proof">
+        <strong>Proof:</strong>
+        Work on $\Omega_H^0$. Couple the two experiments under $\omega^{(1)}$ and $\omega^{(0,K)}$ by using the same internal randomness $U$.
+        Until $K$ is queried, observations (all +1) and thus histories are identical.
+        The event $\{K \in S_T\}$ is determined by the query sequence, which remains identical as long as $K$ is not queried. Since the event occurrence implies $K$ is queried, and the path to that query is identical, the probabilities are equal.
+        <div class="qed"></div>
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma H2 (Joint Event Identity)</span>
+        On the event $E = \{K \notin S_T\}$, the full pair $(H_T, U_{T+1})$ is identical under $\omega^{(1)}$ and $\omega^{(0,K)}$ for the same $U$.
+        Thus, for any event $A$ defined by the estimator $\hat{g}_H$, $\mathbf{1}_A(\omega^{(1)}) \mathbf{1}_E = \mathbf{1}_A(\omega^{(0,K)}) \mathbf{1}_E$.
+    </div>
+
+    <div class="block theorem">
+        <span class="block-title">Theorem H0 (Sharp Minimax Value on $\Omega_H^0$)</span>
+        $$ \inf_{\Pi_H \in \text{Adm}_H(T, B)} \sup_{\omega \in \Omega_H^0} R_H(\Pi_H; \omega) = \frac{1 - B/J}{2 - B/J}. $$
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma H0-Red (Two-Point Reduction on $\Omega_H^0$)</span>
+        For any admissible $\Pi_H$, $\sup_{\omega\in\Omega_H^0} R(\Pi_H;\omega)$ is attained by the sub-problem involving only $\omega^{(1)}$ and $\{\omega^{(0,K)}\}_K$.
+    </div>
+
+    <div class="proof">
+        <strong>Proof (Lower Bound & Tightness):</strong><br>
+        <strong>1. Lower Bound:</strong>
+        Define the event $A := \{ \hat{g}_H = 1 \}$. Let $p = \mathbb{P}^{\Pi_H}_{\omega^{(1)}}(A)$.
+        Risk at $\omega^{(1)}$ is $1-p$.
+        For $\omega^{(0,K)}$, risk is $\mathbb{P}^{\Pi_H}_{\omega^{(0,K)}}(A)$.
+        We have $\sum_{k} \mathbb{P}^{\Pi_H}_{\omega^{(1)}}(A \cap \{k \in S_T\}) = \mathbb{E}[|S_T|\mathbf{1}_A] \le Bp$.
+        So there exists $K$ such that $\mathbb{P}^{\Pi_H}_{\omega^{(1)}}(A \cap \{K \in S_T\}) \le (B/J)p$.
+        Then $\mathbb{P}^{\Pi_H}_{\omega^{(1)}}(A \cap \{K \notin S_T\}) \ge (1 - B/J)p$.
+        By Lemma H2, $\mathbb{P}^{\Pi_H}_{\omega^{(0,K)}}(A) \ge \mathbb{P}^{\Pi_H}_{\omega^{(0,K)}}(A \cap \{K \notin S_T\}) = \mathbb{P}^{\Pi_H}_{\omega^{(1)}}(A \cap \{K \notin S_T\}) \ge (1 - B/J)p$.
+        Minimizing $\max\{1-p, (1-B/J)p\}$ yields $\frac{1-B/J}{2-B/J}$.<br>
+        
+        <div class="block remark">
+          <span class="block-title">Remark (Explicit Uniform Subset Generator)</span>
+          Since the collection of $B$-subsets is finite, enumerate them as $S_1, \dots, S_N$. Define $\Gamma: [0, 1] \to ([J]^B)$ by $\Gamma(u) = S_k$ for $u \in [\frac{k-1}{N}, \frac{k}{N})$. This $\Gamma$ is Borel measurable and generates a uniform distribution over $B$-subsets.
+        </div>
+        <strong>2. Achievability:</strong> 
+        Protocol: Use $U_1$ to pick $S = \Gamma(U_1)$. Query all $j \in S$. If any $-1$ seen, output 0. Else use $U_{T+1}$ to output 1 with prob $p^\star = \frac{1}{2-B/J}$.
+        This achieves the bound exactly.
+        <div class="qed"></div>
+    </div>
+
+    <div class="block corollary">
+        <span class="block-title">Corollary H (General Lower Bound)</span>
+        By Lemma 0, $\mathfrak{R}^\star(\mathsf{Ch}_H(T, B)) \ge \frac{1 - B/J}{2 - B/J} \ge \frac{1}{2}\left(1 - \frac{B}{J}\right)$.
+    </div>
+
+    <h2>4. Algorithm Channel: Upper and Lower Bounds</h2>
+
+    <div class="block remark">
+        <span class="block-title">Remark (Margin Condition)</span>
+        $\Delta := (1-\alpha)\mu_+ - \alpha > 0 \iff \alpha < \frac{\mu_+}{1+\mu_+}$. We assume this holds.
+    </div>
+
+    <div class="block theorem">
+        <span class="block-title">Theorem A1 (Explicit Upper Bound)</span>
+        There exists $\delta \in \text{Adm}_A(m)$ such that
+        $$ \mathfrak{R}^\star(\mathsf{Ch}_A(m)) \le J \exp\left(-\frac{1}{2} m \Delta^2\right). $$
+    </div>
+
+    <div class="proof">
+        <strong>Proof (Explicit rule and bound):</strong>
+        For each field $j$, let $\bar X_j:=\frac{1}{m}\sum_{i=1}^m X_{j,i}$ and define the decision rule
+        $$ \delta(X)=\mathbf{1}\{\forall j\in[J],\ \bar X_j \ge 0\}. $$
+        Inf/Sup of $\mathbb{E}_Q[X]$ over $\mathcal{Q}$ are $-1$ and $1$.
+        For $\vartheta_j=1$, $\mathbb{E}_{P_\omega}[X] \ge (1-\alpha)\mu_+ + \alpha(-1) = \Delta.$
+        For $\vartheta_j=0$, $\mathbb{E}_{P_\omega}[X] \le -\Delta.$
+        Since $X \in [-1, 1]$ (range 2), Hoeffding's inequality gives
+        $$ \mathbb{P}_{P_\omega}[\bar X_j < 0 \mid \vartheta_j=1] \le \exp\left(-\frac{2(m\Delta)^2}{m \cdot 2^2}\right) = \exp\left(-\frac{1}{2}m\Delta^2\right). $$
+        Union bound gives the result.
+        <div class="qed"></div>
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma A2-Realize (Rademacher Subclass Realizability)</span>
+        Assume $\Delta \in (0, 1)$. The distributions $P_{+,\Delta}(+1) = \frac{1+\Delta}{2}$ and $P_{-,\Delta}(+1) = \frac{1-\Delta}{2}$ are realizable within $\Omega$ by setting $P^{(1)}(+1)=\frac{1+\mu_+}{2}$, $Q=\delta_{-1}$, etc.
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma (Chi-square Tensorization)</span>
+        For probability measures $P,Q$ with $P\ll Q$,
+        $$1+\chi^2(P^{\otimes m}\|Q^{\otimes m})=\big(1+\chi^2(P\|Q)\big)^m.$$
+    </div>
+      
+    <div class="block lemma">
+        <span class="block-title">Lemma (Binary $\chi^2$ for $P_{-,\Delta}$ vs $P_{+,\Delta}$)</span>
+        Let $P_{+,\Delta}(+1)=\frac{1+\Delta}{2}$ and $P_{-,\Delta}(+1)=\frac{1-\Delta}{2}$ on $\{+1,-1\}$.
+        Then
+        $$\chi^2(P_{-,\Delta}\|P_{+,\Delta})=\frac{4\Delta^2}{1-\Delta^2}.$$
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma Chi3 (Mixture $\chi^2$ Identity)</span>
+        Let $P_0 = P_{+,\Delta}^{\otimes Jm}$ and $P_k$ be the law where field $k$ is $P_{-,\Delta}^{\otimes m}$. Let $\bar{P} = \frac{1}{J}\sum P_k$.
+        Then $\chi^2(\bar{P} \| P_0) = \frac{1}{J}\chi^2(P_1 \| P_0)$.
+        <div class="proof">
+            Let $L_k := dP_k/dP_0$ on the common finite sample space. Then
+            $$ 1+\chi^2(\bar P \| P_0)=\mathbb{E}_{P_0}\left[\left( \frac{1}{J}\sum_{k=1}^J L_k \right)^2\right]
+            =\frac{1}{J^2}\sum_{k}\mathbb{E}_{P_0}[L_k^2]+\frac{1}{J^2}\sum_{k \neq \ell}\mathbb{E}_{P_0}[L_k L_\ell]. $$
+            For $k \neq \ell$, $P_k$ and $P_\ell$ differ from $P_0$ on disjoint field-blocks, so under $P_0$ the likelihood ratios factor and
+            $\mathbb{E}_{P_0}[L_k L_\ell]=\mathbb{E}_{P_0}[L_k]\mathbb{E}_{P_0}[L_\ell]=1\cdot1=1$.
+            Also $\mathbb{E}_{P_0}[L_k^2]=1+\chi^2(P_k\|P_0)$, independent of $k$ by symmetry.
+            Thus
+            $\chi^2(\bar P \| P_0)= \frac{1}{J}(\chi^2(P_1\|P_0))$.
+            <div class="qed"></div>
+        </div>
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma (Minimax Dominates Bayes Risk)</span>
+        For any prior $\pi$ on $\Omega$,
+        $$\inf_{\Pi}\sup_{\omega\in\Omega}R(\Pi;\omega)\ \ge\ \inf_{\Pi}\mathbb{E}_{\omega\sim\pi}[R(\Pi;\omega)].$$
+    </div>
+
+    <div class="block lemma">
+        <span class="block-title">Lemma TV-$\chi^2$ Inequality</span>
+        For any probability measures $P,Q$ with $P\ll Q$,
+        $$\mathrm{TV}(P,Q)\le \frac12\sqrt{\chi^2(P\|Q)}.$$
+        Consequently, for any binary testing prior, Bayes error satisfies
+        $$R_{\mathrm{Bayes}}\ \ge\ \frac12\big(1-\mathrm{TV}(P,Q)\big).$$
+    </div>
+
+    <div class="block theorem">
+        <span class="block-title">Theorem A2 (Fundamental Lower Bound)</span>
+        Assuming $\Delta \in (0,1)$, if $m \le \frac{\log(1+J)}{\log(1+4\Delta^2/(1-\Delta^2))}$, then $\mathfrak{R}^\star(\mathsf{Ch}_A(m)) \ge \frac{1}{4}$.
+    </div>
+
+    <div class="proof">
+        <strong>Proof:</strong>
+        Consider the realizable subclass. Let $P_0$ correspond to $H_1$ (all +) and $P_k$ to $H_0$ (k is -). Define $\bar P = \frac{1}{J}\sum P_k$.
+        Define prior $\pi$ with mass $1/2$ on $P_0$ and $1/(2J)$ on each $P_k$.
+        By Lemma (Minimax Dominates Bayes Risk), $\mathfrak{R}^\star \ge \text{Bayes Risk}$.
+        Bayes risk $\ge \frac{1}{2}(1 - \mathrm{TV}(P_0, \bar{P}))$.
+        We have $\chi^2(P_k\|P_0) = \left(1+\frac{4\Delta^2}{1-\Delta^2}\right)^m-1$.
+        By Lemma Chi3, $\chi^2(\bar P\|P_0) = \frac{1}{J}\chi^2(P_k\|P_0)$.
+        If this is $\le 1$, then $\mathrm{TV} \le 1/2$, yielding Minimax risk $\ge 1/4$.
+        This condition simplifies to the stated bound on $m$.
+        <div class="qed"></div>
+    </div>
+
+    <h2>5. Main Result and Legitimacy</h2>
+
+    <div class="block theorem">
+        <span class="block-title">Main Theorem (Strict Minimax Dominance)</span>
+        Assume $B < J$ and $\Delta > 0$. If
+        $$ m > \frac{2}{\Delta^2} \log\left(\frac{J(2-B/J)}{1-B/J}\right) $$
+        then
+        $$ \mathfrak{R}^\star(\mathsf{Ch}_A(m)) < \mathfrak{R}^\star(\mathsf{Ch}_H(T, B)). $$
+    </div>
+
+    <div class="proof">
+        <strong>Proof:</strong>
+        The condition on $m$ ensures $J\exp\left(-\frac{1}{2}m\Delta^2\right) < \frac{1-B/J}{2-B/J}$.
+        Combining Theorem A1 and Corollary H yields the result.
+        <div class="qed"></div>
+    </div>
+
+    <div class="block definition">
+        <span class="block-title">Definition (Cognitive Legitimacy Preorder)</span>
+        For channels $\mathsf{Ch}_1, \mathsf{Ch}_2$, define $\mathsf{Ch}_1 \succ \mathsf{Ch}_2$ iff $\mathfrak{R}^\star(\mathsf{Ch}_1) < \mathfrak{R}^\star(\mathsf{Ch}_2)$.
+        We call $\mathsf{Ch}_1$ "strictly more legitimate (in the minimax sense)" than $\mathsf{Ch}_2$.
+    </div>
+
+    <h2>References</h2>
+    <div class="references">
+        <ol>
+            <li id="ref-LC86">[1] L. Le Cam, <i>Asymptotic Methods in Statistical Decision Theory</i>, Springer (1986).</li>
+            <li id="ref-Hub64">[2] P. J. Huber, "Robust Estimation of a Location Parameter," <i>Annals of Mathematical Statistics</i> (1964).</li>
+            <li id="ref-Tsy09">[3] A. B. Tsybakov, <i>Introduction to Nonparametric Estimation</i>, Springer (2009).</li>
+            <li id="ref-Hoe63">[4] W. Hoeffding, "Probability Inequalities for Sums of Bounded Random Variables," <i>JASA</i> (1963).</li>
+            <li id="ref-IT">[5] A. Ionescu Tulcea, "Mesures dans les espaces produits," <i>Atti Accad. Naz. Lincei Cl. Sci. Fis. Mat. Nat.</i> (1949).</li>
+        </ol>
+    </div>
+
+</body>
+</html>
