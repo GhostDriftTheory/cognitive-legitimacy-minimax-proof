@@ -9,6 +9,9 @@
 
 This repo proves a single claim: when humans cannot cover all fields ($B < J$), the Human Channel has an unavoidable minimax error floor, while the Algorithm Channel’s minimax risk can be driven down exponentially with $m$.
 
+🌐 GhostDrift Mathematical Institute (Official)
+[https://www.ghostdriftresearch.com/](https://www.ghostdriftresearch.com/)
+
 ## **📜 Executive Summary**
 
 * If $B < J$, the **Human Channel** has a non-vanishing minimax error floor.  
